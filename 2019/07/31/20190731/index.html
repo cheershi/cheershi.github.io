@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>数据到报率 | Hexo</title>
+  <title>闭包 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="涉及表标准水位表 biz_water_st_r 标准雨量表 biz_rain_pptn_r 测站信息表 biz_station_info">
+  <meta name="description" content="闭包能够将一个方法作为一个变量去存储，这个方法有能力去访问所在类的自由变量 在java中，闭包是通过接口和内部类实现的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据到报率">
-<meta property="og:url" content="http://yoursite.com/2019/10/18/数据到报率/index.html">
+<meta property="og:title" content="闭包">
+<meta property="og:url" content="http://yoursite.com/2019/07/31/20190731/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="涉及表标准水位表 biz_water_st_r 标准雨量表 biz_rain_pptn_r 测站信息表 biz_station_info">
+<meta property="og:description" content="闭包能够将一个方法作为一个变量去存储，这个方法有能力去访问所在类的自由变量 在java中，闭包是通过接口和内部类实现的">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-15T02:04:27.363Z">
+<meta property="og:updated_time" content="2019-10-15T09:35:05.112Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据到报率">
-<meta name="twitter:description" content="涉及表标准水位表 biz_water_st_r 标准雨量表 biz_rain_pptn_r 测站信息表 biz_station_info">
+<meta name="twitter:title" content="闭包">
+<meta name="twitter:description" content="闭包能够将一个方法作为一个变量去存储，这个方法有能力去访问所在类的自由变量 在java中，闭包是通过接口和内部类实现的">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -154,34 +154,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-数据到报率" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-20190731" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      数据到报率
+      闭包
     </h1>
   
 
         
-        <a href="/2019/10/18/数据到报率/" class="archive-article-date">
-  	<time datetime="2019-10-18T09:55:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-18</time>
+        <a href="/2019/07/31/20190731/" class="archive-article-date">
+  	<time datetime="2019-07-31T09:55:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-31</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="涉及表"><a href="#涉及表" class="headerlink" title="涉及表"></a>涉及表</h2><p>标准水位表</p>
-<p>biz_water_st_r</p>
-<p>标准雨量表</p>
-<p>biz_rain_pptn_r</p>
-<p>测站信息表</p>
-<p>biz_station_info</p>
-<a id="more"></a> 
-<h2 id="业务逻辑"><a href="#业务逻辑" class="headerlink" title="业务逻辑"></a>业务逻辑</h2><p>①到报率中包含，测站名称、国家测站码、设备站址、到报条数、到报率<br>②数据到报率统计规则：<br>1）以最小统计周期单位“1天”作为更新周期，每天更新一次<br>2）以小时报作为到报统计条数，即一天24条<br>3）每个小时有12组水位、雨量数据，如果12组数据全部为“空值”或“无效值”，则这个小时视为缺报；如果整点实时数据为“空值”或“无效值”，则这个小时视为缺报；其余情况视为正常到报。<br>4）到报率计算方法（以1天作为例子）：如果有一个小时缺报，则到报率为：23/24=95.8％（保留一位小数）<br>③缺报提醒：主要针对平安报，对应第3点原始报文展示</p>
+        <p>闭包能够将一个方法作为一个变量去存储，这个方法有能力去访问所在类的自由变量</p>
+<p><strong>在java中，闭包是通过接口和内部类实现的</strong></p>
 
       
 
@@ -261,7 +255,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/10/18/数据到报率/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/31/20190731/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -275,11 +269,15 @@
   
 <nav id="article-nav">
   
-  
-    <a href="/2019/10/17/短信发送/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">短信发送</div>
-      <i class="icon-circle-right"></i>
+    <a href="/2019/08/01/20190801/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          线程
+        
+      </div>
     </a>
+  
   
 </nav>
 
