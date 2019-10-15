@@ -152,6 +152,562 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-数据到报率" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="数据到报率"><a href="#数据到报率" class="headerlink" title="数据到报率"></a>数据到报率</h1><h2 id="涉及表"><a href="#涉及表" class="headerlink" title="涉及表"></a>涉及表</h2><p>标准水位表</p>
+<p>biz_water_st_r</p>
+<p>标准雨量表</p>
+<p>biz_rain_pptn_r</p>
+<p>测站信息表</p>
+<p>biz_station_info</p>
+<h2 id="业务逻辑"><a href="#业务逻辑" class="headerlink" title="业务逻辑"></a>业务逻辑</h2><p>①到报率中包含，测站名称、国家测站码、设备站址、到报条数、到报率<br>②数据到报率统计规则：<br>1）以最小统计周期单位“1天”作为更新周期，每天更新一次<br>2）以小时报作为到报统计条数，即一天24条<br>3）每个小时有12组水位、雨量数据，如果12组数据全部为“空值”或“无效值”，则这个小时视为缺报；如果整点实时数据为“空值”或“无效值”，则这个小时视为缺报；其余情况视为正常到报。<br>4）到报率计算方法（以1天作为例子）：如果有一个小时缺报，则到报率为：23/24=95.8％（保留一位小数）<br>③缺报提醒：主要针对平安报，对应第3点原始报文展示</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/15/数据到报率/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-短信发送" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="短信发送"><a href="#短信发送" class="headerlink" title="短信发送"></a>短信发送</h1><h2 id="1-通过配置文件来开启线程池"><a href="#1-通过配置文件来开启线程池" class="headerlink" title="1.通过配置文件来开启线程池"></a>1.通过配置文件来开启线程池</h2><h2 id="2-线程中-获取输出-处理数据"><a href="#2-线程中-获取输出-处理数据" class="headerlink" title="2.线程中 获取输出  处理数据"></a>2.线程中 获取输出  处理数据</h2><h2 id="3-处理数据中-判断是否超过阈值-没超过则删除预警记录中的数据（可优化-判断是否有记录）超过-判断预警表中有记录-没有则发送短信-判断短信状态-如果是失败-册-重发（配置重发时长）-更新记录"><a href="#3-处理数据中-判断是否超过阈值-没超过则删除预警记录中的数据（可优化-判断是否有记录）超过-判断预警表中有记录-没有则发送短信-判断短信状态-如果是失败-册-重发（配置重发时长）-更新记录" class="headerlink" title="3.处理数据中 判断是否超过阈值 没超过则删除预警记录中的数据（可优化 判断是否有记录）超过 判断预警表中有记录  没有则发送短信  判断短信状态 如果是失败  册 重发（配置重发时长） 更新记录"></a>3.处理数据中 判断是否超过阈值 没超过则删除预警记录中的数据（可优化 判断是否有记录）超过 判断预警表中有记录  没有则发送短信  判断短信状态 如果是失败  册 重发（配置重发时长） 更新记录</h2><h2 id="4-写代码-可以先完成固定部分（发送短信-查询短信记录-crud）-再根据业务来实现相关功能"><a href="#4-写代码-可以先完成固定部分（发送短信-查询短信记录-crud）-再根据业务来实现相关功能" class="headerlink" title="4.写代码 可以先完成固定部分（发送短信 查询短信记录 crud） 再根据业务来实现相关功能"></a>4.写代码 可以先完成固定部分（发送短信 查询短信记录 crud） 再根据业务来实现相关功能</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SystemInit</span> <span class="keyword">implements</span> <span class="title">CommandLineRunner</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Resource</span></span><br><span class="line">    TaskExecutor taskExecutor;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    IBizInclinationCurrentService inclinationCurrentService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    ISmsAlarmService alarmService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;thread.alarmSwitch&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> String alarmSwitch;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">(String... args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">"true"</span>.equals(alarmSwitch)) &#123;<span class="comment">//线程开关打开</span></span><br><span class="line">            AlarmThread tempThread = <span class="keyword">new</span> AlarmThread(inclinationCurrentService,alarmService);</span><br><span class="line">            taskExecutor.execute(tempThread);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AlarmThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> IBizInclinationCurrentService inclinationService;</span><br><span class="line">    <span class="keyword">private</span> ISmsAlarmService alarmService;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AlarmThread</span><span class="params">(IBizInclinationCurrentService inclinationService, ISmsAlarmService alarmService)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.inclinationService = inclinationService;</span><br><span class="line">        <span class="keyword">this</span>.alarmService = alarmService;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            log.info(<span class="string">"----预警监测线程已启动---"</span>);</span><br><span class="line">            Map&lt;String, Object&gt; queryMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">            queryMap.put(<span class="string">"alarmType"</span>, <span class="number">2</span>);</span><br><span class="line">            List&lt;BizInclinationCurDto&gt; list = inclinationService.selectInclinationCurList(queryMap);</span><br><span class="line">            <span class="comment">//处理数据</span></span><br><span class="line">            alarmService.handleInclinationSmsInfo(list);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">5</span> * <span class="number">60</span> * <span class="number">1000</span> / <span class="number">2</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SmsAlarmServiceImpl</span> <span class="keyword">implements</span> <span class="title">ISmsAlarmService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ISmsRecordService smsRecordService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ISmsSendService smsSendService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> IAlarmSlurryService alarmSlurryService;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 处理角度预警信息</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> list</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleInclinationSmsInfo</span><span class="params">(List&lt;BizInclinationCurDto&gt; list)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (BizInclinationCurDto incliCurDto : list) &#123;</span><br><span class="line">            BigDecimal xAxis = incliCurDto.getXaxis();</span><br><span class="line">            BigDecimal yAxis = incliCurDto.getYaxis();</span><br><span class="line">            String thresh = incliCurDto.getThresh();</span><br><span class="line">            String[] split = thresh.split(<span class="string">","</span>);</span><br><span class="line">            List&lt;String&gt; threshList = Arrays.asList(split);</span><br><span class="line">            BigDecimal xThresh = <span class="keyword">new</span> BigDecimal(threshList.get(<span class="number">0</span>)).abs();</span><br><span class="line">            BigDecimal yThresh = <span class="keyword">new</span> BigDecimal(threshList.get(<span class="number">1</span>)).abs();</span><br><span class="line">            AlarmSlurry alarmSlurry = <span class="keyword">new</span> AlarmSlurry(incliCurDto.getTermSn(), incliCurDto.getAlarmType());</span><br><span class="line">            <span class="comment">//1、比较x值</span></span><br><span class="line">            <span class="keyword">if</span> (CommUtils.notNull(xAxis)) &#123;</span><br><span class="line">                <span class="keyword">int</span> x = xAxis.compareTo(xThresh);</span><br><span class="line">                <span class="keyword">int</span> y = yAxis.compareTo(yThresh);</span><br><span class="line">                <span class="comment">//，-1表示小于，0是等于，1是大于。</span></span><br><span class="line">                <span class="keyword">if</span> (x &gt; <span class="number">0</span> || y &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    String content = <span class="string">""</span>;</span><br><span class="line">                    <span class="comment">//1、封装短信记录信息</span></span><br><span class="line">                    SmsRecord smsRecord = <span class="keyword">new</span> SmsRecord(incliCurDto.getTermSn(), incliCurDto.getAlarmType(),</span><br><span class="line">                            incliCurDto.getDataTime(), <span class="keyword">new</span> Date(), content, incliCurDto.getAcceptor(),</span><br><span class="line">                            incliCurDto.getTelephone(), incliCurDto.getStName(),</span><br><span class="line">                            <span class="keyword">new</span> BigDecimal(incliCurDto.getXaxis().toString()).setScale(<span class="number">1</span>, BigDecimal.ROUND_HALF_UP) + <span class="string">","</span> +</span><br><span class="line">                                    <span class="keyword">new</span> BigDecimal(incliCurDto.getYaxis().toString()).setScale(<span class="number">1</span>, BigDecimal.ROUND_HALF_UP));</span><br><span class="line">                    AlarmSlurry alarmSlurrySingle = alarmSlurryService.getAlarmSlurrySingle(alarmSlurry);</span><br><span class="line"></span><br><span class="line">                    <span class="comment">//2、封装泥浆信息</span></span><br><span class="line">                    AlarmSlurry addAlarmSlurry = <span class="keyword">new</span> AlarmSlurry(incliCurDto.getTermSn(), incliCurDto.getAlarmType(),</span><br><span class="line">                            incliCurDto.getDataTime(), incliCurDto.getDataTime(), incliCurDto.getXaxis() + <span class="string">","</span> + incliCurDto.getYaxis(),</span><br><span class="line">                            incliCurDto.getThresh(), <span class="number">1</span>);</span><br><span class="line">                    Integer smsStatus = <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">if</span> (CommUtils.isNull(alarmSlurrySingle)) &#123;<span class="comment">//无记录则发送短信</span></span><br><span class="line">                        addAlarmSlurry.setStartTm(incliCurDto.getDataTime());</span><br><span class="line">                        <span class="comment">//短信发送模块</span></span><br><span class="line">                        smsStatus = sendMsg(smsRecord);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;<span class="comment">//有记录则更新</span></span><br><span class="line">                        smsStatus =  alarmSlurrySingle.getSendStatus();</span><br><span class="line">                        <span class="keyword">if</span> (alarmSlurrySingle.getSendStatus() == <span class="number">1</span>) &#123;</span><br><span class="line">                            SmsRecord latestSmsRecord = smsRecordService.getLatestSmsRecord(smsRecord);</span><br><span class="line">                            <span class="comment">//需将step可配置化</span></span><br><span class="line">                            <span class="keyword">if</span>(CommUtils.notNull(latestSmsRecord) &amp;&amp; isBtStep(<span class="keyword">new</span> Date(),latestSmsRecord.getSendTm(),<span class="number">10</span>*<span class="number">60</span>*<span class="number">1000</span>))&#123;</span><br><span class="line">                                <span class="comment">//短信发送模块,短信发送失败的记录，10分钟重新发一次</span></span><br><span class="line">                                smsStatus = sendMsg(smsRecord);</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                        addAlarmSlurry.setStartTm(alarmSlurrySingle.getStartTm());</span><br><span class="line">                        addAlarmSlurry.setUpdateTm(incliCurDto.getDataTime());</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    <span class="comment">// addAlarmSlurry  1、待发送；2、已发送</span></span><br><span class="line">                    <span class="comment">// smsRecord       1、发送失败；2、发送成功</span></span><br><span class="line">                    addAlarmSlurry.setSendStatus(smsStatus);</span><br><span class="line">                    <span class="comment">//新增预警记录</span></span><br><span class="line">                    alarmSlurryService.insertAlarmSlurry(addAlarmSlurry);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;<span class="comment">//表示未超过预警，删除预警记录，解除预警</span></span><br><span class="line">                    alarmSlurryService.deleteSingle(alarmSlurry);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> Integer <span class="title">sendMsg</span><span class="params">(SmsRecord smsRecord)</span> </span>&#123;</span><br><span class="line">        Integer status;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            SendSmsResponse sendSmsResponse = smsSendService.sendSmsRecord(smsRecord);</span><br><span class="line">            status = dealSmsResponse(sendSmsResponse, smsRecord);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            status = <span class="number">1</span>;</span><br><span class="line">            <span class="comment">//短信发送失败</span></span><br><span class="line">            log.error(<span class="string">"---短信发送失败---:"</span> + e.getMessage());</span><br><span class="line">            smsRecord.setContent(e.getMessage());</span><br><span class="line">            smsRecord.setStatus(<span class="number">1</span>);</span><br><span class="line">            smsRecordService.addSmsRecord(smsRecord);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> status;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> Integer <span class="title">dealSmsResponse</span><span class="params">(SendSmsResponse response, SmsRecord smsRecord)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        log.info(<span class="string">"短信接口返回的数据----------------"</span>);</span><br><span class="line">        log.info(<span class="string">"Code="</span> + response.getCode());</span><br><span class="line">        log.info(<span class="string">"Message="</span> + response.getMessage());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//发送成功，查明细</span></span><br><span class="line">        <span class="keyword">if</span> (response.getCode() != <span class="keyword">null</span> &amp;&amp; response.getCode().equals(<span class="string">"OK"</span>)) &#123;</span><br><span class="line">            String phoneStr = smsRecord.getTelephone();</span><br><span class="line">            QuerySendDetailsResponse querySendDetailsResponse = <span class="keyword">null</span>;</span><br><span class="line">            querySendDetailsResponse = querySendDetails(response.getBizId(), phoneStr);</span><br><span class="line">            log.info(<span class="string">"短信明细查询接口返回数据----------------"</span>);</span><br><span class="line">            log.info(<span class="string">"Code="</span> + querySendDetailsResponse.getCode());</span><br><span class="line">            log.info(<span class="string">"Message="</span> + querySendDetailsResponse.getMessage());</span><br><span class="line">            List&lt;QuerySendDetailsResponse.SmsSendDetailDTO&gt; smsSendDetailDTOs = querySendDetailsResponse.getSmsSendDetailDTOs();</span><br><span class="line">            <span class="keyword">if</span> (CommUtils.notNull(smsSendDetailDTOs)) &#123;</span><br><span class="line">                QuerySendDetailsResponse.SmsSendDetailDTO smsSendDetailDTO = smsSendDetailDTOs.get(<span class="number">0</span>);<span class="comment">//默认取第一条</span></span><br><span class="line">                String smsContent = smsSendDetailDTO.getContent();</span><br><span class="line">                smsRecord.setStatus(<span class="number">2</span>);<span class="comment">//发送状态（1、失败；2、成功）</span></span><br><span class="line">                smsRecord.setContent(smsContent);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                smsRecord.setStatus(<span class="number">1</span>);</span><br><span class="line">                smsRecord.setContent(response.getMessage());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            smsRecord.setStatus(<span class="number">1</span>);</span><br><span class="line">            smsRecord.setContent(response.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">        smsRecordService.addSmsRecord(smsRecord);</span><br><span class="line">        <span class="keyword">return</span> smsRecord.getStatus();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> QuerySendDetailsResponse <span class="title">querySendDetails</span><span class="params">(String bizId, String phone)</span> <span class="keyword">throws</span> ClientException </span>&#123;</span><br><span class="line">        <span class="comment">//可自助调整超时时间</span></span><br><span class="line">        System.setProperty(<span class="string">"sun.net.client.defaultConnectTimeout"</span>, <span class="string">"10000"</span>);</span><br><span class="line">        System.setProperty(<span class="string">"sun.net.client.defaultReadTimeout"</span>, <span class="string">"10000"</span>);</span><br><span class="line">        <span class="comment">//初始化acsClient,暂不支持region化</span></span><br><span class="line">        IClientProfile profile = DefaultProfile.getProfile(<span class="string">"cn-hangzhou"</span>, SysConstant.accessKeyId, SysConstant.accessKeySecret);</span><br><span class="line">        DefaultProfile.addEndpoint(<span class="string">"cn-hangzhou"</span>, <span class="string">"cn-hangzhou"</span>, SysConstant.product, SysConstant.domain);</span><br><span class="line">        IAcsClient acsClient = <span class="keyword">new</span> DefaultAcsClient(profile);</span><br><span class="line">        <span class="comment">//组装请求对象</span></span><br><span class="line">        QuerySendDetailsRequest request = <span class="keyword">new</span> QuerySendDetailsRequest();</span><br><span class="line">        <span class="comment">//必填-号码</span></span><br><span class="line">        request.setPhoneNumber(phone);</span><br><span class="line">        <span class="comment">//可选-流水号</span></span><br><span class="line">        request.setBizId(bizId);</span><br><span class="line">        <span class="comment">//必填-发送日期 支持30天内记录查询，格式yyyyMMdd</span></span><br><span class="line">        SimpleDateFormat ft = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyyMMdd"</span>);</span><br><span class="line">        request.setSendDate(ft.format(<span class="keyword">new</span> Date()));</span><br><span class="line">        <span class="comment">//必填-页大小</span></span><br><span class="line">        request.setPageSize(<span class="number">10L</span>);</span><br><span class="line">        <span class="comment">//必填-当前页码从1开始计数</span></span><br><span class="line">        request.setCurrentPage(<span class="number">1L</span>);</span><br><span class="line">        <span class="comment">//hint 此处可能会抛出异常，注意catch</span></span><br><span class="line">        QuerySendDetailsResponse querySendDetailsResponse = acsClient.getAcsResponse(request);</span><br><span class="line">        <span class="keyword">return</span> querySendDetailsResponse;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/15/短信发送/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2019.9.3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="2019-9-3"><a href="#2019-9-3" class="headerlink" title="2019.9.3"></a>2019.9.3</h1><h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><p>实时数据以及历史数据</p>
+<p>水位以及雨量的展示</p>
+<h2 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h2><p>jeecg-boot</p>
+<p>vue及其插件 vuex，vue-router，ant design vue</p>
+<h2 id="所得"><a href="#所得" class="headerlink" title="所得"></a>所得</h2><p>vue代码的基本阅读能力已经达成</p>
+<p>ant design api的使用</p>
+<p>vuex 的使用</p>
+<p>vue-router的使用</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/15/2019.9.3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20190910" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="20190910"><a href="#20190910" class="headerlink" title="20190910"></a>20190910</h1><h2 id="数据报文"><a href="#数据报文" class="headerlink" title="数据报文"></a>数据报文</h2><h3 id="报文接收状态"><a href="#报文接收状态" class="headerlink" title="报文接收状态"></a>报文接收状态</h3><p><img src="assets/201909101112.jpg" alt></p>
+<h3 id="水位报文"><a href="#水位报文" class="headerlink" title="水位报文"></a>水位报文</h3><p><img src="assets/201909101113.jpg" alt></p>
+<h3 id="雨量报文"><a href="#雨量报文" class="headerlink" title="雨量报文"></a>雨量报文</h3><p><img src="assets/201909101114.jpg" alt></p>
+<h2 id="实时数据"><a href="#实时数据" class="headerlink" title="实时数据"></a>实时数据</h2><h3 id="水位"><a href="#水位" class="headerlink" title="水位"></a>水位</h3><p><img src="assets/201909101115.jpg" alt></p>
+<h3 id="雨量"><a href="#雨量" class="headerlink" title="雨量"></a>雨量</h3><p><img src="assets/201909101116.jpg" alt></p>
+<h2 id="泥浆监测"><a href="#泥浆监测" class="headerlink" title="泥浆监测"></a>泥浆监测</h2><h3 id="阈值管理"><a href="#阈值管理" class="headerlink" title="阈值管理"></a>阈值管理</h3><p><img src="assets/201909101117.jpg" alt></p>
+<h3 id="短信记录"><a href="#短信记录" class="headerlink" title="短信记录"></a>短信记录</h3><p><img src="assets/201909101118.jpg" alt></p>
+<h2 id="历史数据"><a href="#历史数据" class="headerlink" title="历史数据"></a>历史数据</h2><h3 id="水位-1"><a href="#水位-1" class="headerlink" title="水位"></a>水位</h3><p><img src="assets/201909101119.jpg" alt></p>
+<h3 id="雨量-1"><a href="#雨量-1" class="headerlink" title="雨量"></a>雨量</h3><p><img src="assets/201909101120.jpg" alt></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/15/20190910/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20190812" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="小程序学习笔记"><a href="#小程序学习笔记" class="headerlink" title="小程序学习笔记"></a>小程序学习笔记</h1><h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><h3 id="视图容器"><a href="#视图容器" class="headerlink" title="视图容器"></a>视图容器</h3><h4 id="view"><a href="#view" class="headerlink" title="view"></a>view</h4><p>横向布局</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flex-direction: row</span><br></pre></td></tr></table></figure>
+
+<p>纵向布局</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flex-direction: column</span><br></pre></td></tr></table></figure>
+
+<h4 id="scroll-view"><a href="#scroll-view" class="headerlink" title="scroll-view"></a>scroll-view</h4><p>纵向滚动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scroll-y=&quot;true&quot;</span><br></pre></td></tr></table></figure>
+
+<p>横向滚动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scroll-x=&quot;true&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="swiper"><a href="#swiper" class="headerlink" title="swiper"></a>swiper</h4><p>autoplay 自动播放</p>
+<p>duration 切换时长</p>
+<p>indicator-dots 指示点</p>
+<p>interval 自动播放间隔时长</p>
+<h4 id="movable-view"><a href="#movable-view" class="headerlink" title="movable-view"></a>movable-view</h4><p>x     x轴</p>
+<p>y     y轴</p>
+<p>direction    可移动方向</p>
+<h4 id="cover-view"><a href="#cover-view" class="headerlink" title="cover-view"></a>cover-view</h4><p>覆盖在原生组件之上的文本视图。</p>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><h3 id="界面"><a href="#界面" class="headerlink" title="界面"></a>界面</h3><h4 id="设置界面标题"><a href="#设置界面标题" class="headerlink" title="设置界面标题"></a>设置界面标题</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">wx.setNavigationBarTitle(&#123;</span><br><span class="line">      title,</span><br><span class="line">      success() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'setNavigationBarTitle success'</span>)</span><br><span class="line">      &#125;,</span><br><span class="line">      fail(err) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'setNavigationBarTitle fail, err is'</span>, err)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="标题栏加载动画"><a href="#标题栏加载动画" class="headerlink" title="标题栏加载动画"></a>标题栏加载动画</h4><p>显示加载动画</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wx.showNavigationBarLoading()</span><br></pre></td></tr></table></figure>
+
+<p>隐藏加载动画</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wx.hideNavigationBarLoading()</span><br></pre></td></tr></table></figure>
+
+<h4 id="设置TabBar"><a href="#设置TabBar" class="headerlink" title="设置TabBar"></a>设置TabBar</h4><p>设置tab徽标</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wx.setTabBarBadge(&#123;</span><br><span class="line">        index: <span class="number">1</span>,</span><br><span class="line">        text: <span class="string">'99'</span>,</span><br><span class="line">      &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>移除tab徽标</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wx.removeTabBarBadge(&#123;</span><br><span class="line">        index: <span class="number">1</span>,</span><br><span class="line">      &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>显示红点</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wx.showTabBarRedDot(&#123;</span><br><span class="line">        index: <span class="number">1</span></span><br><span class="line">      &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>移除红点</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wx.hideTabBarRedDot(&#123;</span><br><span class="line">        index: <span class="number">1</span></span><br><span class="line">      &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>显示TabBar</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wx.showTabBar()</span><br></pre></td></tr></table></figure>
+
+<p>隐藏TabBar</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wx.hideTabBar()</span><br></pre></td></tr></table></figure>
+
+<p>自定义Tab样式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wx.setTabBarStyle(&#123;</span><br><span class="line">        color: <span class="string">'#FFF'</span>,</span><br><span class="line">        selectedColor: <span class="string">'#1AAD19'</span>,</span><br><span class="line">        backgroundColor: <span class="string">'#000000'</span>,</span><br><span class="line">      &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>移除自定义Tab信息</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> defaultTabBarStyle = &#123;</span><br><span class="line">  color: <span class="string">'#7A7E83'</span>,</span><br><span class="line">  selectedColor: <span class="string">'#3cc51f'</span>,</span><br><span class="line">  backgroundColor: <span class="string">'#ffffff'</span>,</span><br><span class="line">&#125;</span><br><span class="line">wx.setTabBarStyle(defaultTabBarStyle)</span><br></pre></td></tr></table></figure>
+
+<h4 id="页面跳转"><a href="#页面跳转" class="headerlink" title="页面跳转"></a>页面跳转</h4><p>跳转新页面</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wx.navigateTo(&#123;<span class="attr">url</span>: <span class="string">'./navigator'</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>返回上一页</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wx.navigateBack()</span><br></pre></td></tr></table></figure>
+
+<p>在当前页面打开</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wx.redirectTo(&#123;url: &apos;./navigator&apos;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>跳转到组件Tab</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wx.switchTab(&#123;<span class="attr">url</span>: <span class="string">'/page/component/index'</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>关闭所有页面并跳转</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wx.reLaunch(&#123;<span class="attr">url</span>: <span class="string">'/page/component/index'</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>下拉刷新</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"enablePullDownRefresh": true</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">onPullDownRefresh() &#123;</span><br><span class="line">    wx.showToast(&#123;</span><br><span class="line">      title: <span class="string">'loading...'</span>,</span><br><span class="line">      icon: <span class="string">'loading'</span></span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'onPullDownRefresh'</span>, <span class="keyword">new</span> <span class="built_in">Date</span>())</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">   stopPullDownRefresh() &#123;</span><br><span class="line">    wx.stopPullDownRefresh(&#123;</span><br><span class="line">      complete(res) &#123;</span><br><span class="line">        wx.hideToast()</span><br><span class="line">        <span class="built_in">console</span>.log(res, <span class="keyword">new</span> <span class="built_in">Date</span>())</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="操作菜单"><a href="#操作菜单" class="headerlink" title="操作菜单"></a>操作菜单</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">wx.showActionSheet(&#123;</span><br><span class="line">  itemList: [<span class="string">'item1'</span>, <span class="string">'item2'</span>, <span class="string">'item3'</span>, <span class="string">'item4'</span>],</span><br><span class="line">  success(e) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e.tapIndex)</span><br><span class="line">  &#125;,</span><br><span class="line">  fail(e)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="模态弹窗"><a href="#模态弹窗" class="headerlink" title="模态弹窗"></a>模态弹窗</h4>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/15/20190812/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20190805" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="深圳水文前置"><a href="#深圳水文前置" class="headerlink" title="深圳水文前置"></a>深圳水文前置</h1><h2 id="上周总结"><a href="#上周总结" class="headerlink" title="上周总结"></a>上周总结</h2><h3 id="1-代码入口"><a href="#1-代码入口" class="headerlink" title="1.代码入口"></a>1.代码入口</h3><p><img src="assets/08051009.png" alt></p>
+<p>setConfigPath 加载 配置文件apps.xml</p>
+<h3 id="2-init"><a href="#2-init" class="headerlink" title="2.init()"></a>2.init()</h3><p><img src="assets/08051008.png" alt></p>
+<p>initLog4j()初始化Log4j</p>
+<p>initDataSourceConfig() 初始化数据源参数</p>
+<p>initSpringContext() 初始化spring环境</p>
+<h3 id="3-CompLoadComponent"><a href="#3-CompLoadComponent" class="headerlink" title="3.CompLoadComponent"></a>3.CompLoadComponent</h3><p><img src="assets/08051015.png" alt></p>
+<p><img src="assets/08051017.png" alt></p>
+<p>加载配置文件中的name 以及 driver</p>
+<h3 id="4-startComp"><a href="#4-startComp" class="headerlink" title="4.startComp()"></a>4.startComp()</h3><p><img src="assets/08051019.png" alt></p>
+<p>开启组件</p>
+<h3 id="5-AbstractCompFrame-start"><a href="#5-AbstractCompFrame-start" class="headerlink" title="5.AbstractCompFrame.start()"></a>5.AbstractCompFrame.start()</h3><p><img src="assets/08051020.png" alt></p>
+<p>加载配置文件</p>
+<h3 id="6-AbstractCompFrame-connentMsgBus"><a href="#6-AbstractCompFrame-connentMsgBus" class="headerlink" title="6.AbstractCompFrame.connentMsgBus()"></a>6.AbstractCompFrame.connentMsgBus()</h3><p><img src="assets/08051022.png" alt></p>
+<p>根据配置文件的配置信息 创建队列</p>
+<h3 id="7-AbstractCompFrame-createMsgQueue"><a href="#7-AbstractCompFrame-createMsgQueue" class="headerlink" title="7.AbstractCompFrame.createMsgQueue()"></a>7.AbstractCompFrame.createMsgQueue()</h3><p><img src="assets/08051024.png" alt></p>
+<p>将队列与消费和生产的方法进行绑定</p>
+<h3 id="8-Main-start"><a href="#8-Main-start" class="headerlink" title="8.Main.start"></a>8.Main.start</h3><p><img src="assets/08051037.png" alt></p>
+<p>将配置文件中加载的组件 实例化</p>
+<p>然后接收报文 将报文存入数据库</p>
+<p>irtu系统将数据库中的数据显示到</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/15/20190805/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20190801" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>线程</p>
+<p>什么是线程？</p>
+<p>线程是轻量级的进程。进程是在某种程度上相互隔离的、独立运行的程序。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/15/20190801/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20190731" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-闭包"><a href="#1-闭包" class="headerlink" title="1.闭包"></a>1.闭包</h2><p>闭包能够将一个方法作为一个变量去存储，这个方法有能力去访问所在类的自由变量</p>
+<p><strong>在java中，闭包是通过接口和内部类实现的</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/15/20190731/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20190918" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="20190918"><a href="#20190918" class="headerlink" title="20190918"></a>20190918</h1><h2 id="泥浆监测"><a href="#泥浆监测" class="headerlink" title="泥浆监测"></a>泥浆监测</h2><p><img src="./assets/201909181139.PNG" alt></p>
+<p><img src="assets/201909181507.jpg" alt></p>
+<p><img src="assets/201909181515.jpg" alt></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/15/20190918/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-1011测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -215,81 +771,10 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/11/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/11/hello-world/" class="archive-article-date">
-  	<time datetime="2019-10-11T06:14:44.225Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/11/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 
