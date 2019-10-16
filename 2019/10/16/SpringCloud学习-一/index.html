@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://cheershi.github.io">
-  <title>陈丰的个人博客</title>
+  <title>SpringCloud学习(一) | 陈丰的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="陈丰的个人博客">
-<meta property="og:url" content="http://cheershi.github.io/index.html">
+  <meta name="description" content="eurekaeureka是一个服务注册和发现模块 示例">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringCloud学习(一)">
+<meta property="og:url" content="http://cheershi.github.io/2019/10/16/SpringCloud学习-一/index.html">
 <meta property="og:site_name" content="陈丰的个人博客">
+<meta property="og:description" content="eurekaeureka是一个服务注册和发现模块 示例">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-16T09:13:35.178Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="陈丰的个人博客">
+<meta name="twitter:title" content="SpringCloud学习(一)">
+<meta name="twitter:description" content="eurekaeureka是一个服务注册和发现模块 示例">
   
     <link rel="alternative" href="/atom.xml" title="陈丰的个人博客" type="application/atom+xml">
   
@@ -150,16 +154,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-SpringCloud学习-一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-SpringCloud学习-一" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/16/SpringCloud学习-一/">SpringCloud学习(一)</a>
+    <h1 class="article-title" itemprop="name">
+      SpringCloud学习(一)
     </h1>
   
 
@@ -174,11 +176,43 @@
       
         <h4 id="eureka"><a href="#eureka" class="headerlink" title="eureka"></a>eureka</h4><p>eureka是一个服务注册和发现模块</p>
 <p><a href="https://www.fangzhipeng.com/springcloud/2017/06/01/sc01-eureka.html" target="_blank" rel="noopener">示例</a></p>
-        
-          <a class="article-more-a" href="/2019/10/16/SpringCloud学习-一/#more">more >></a>
-        
+<a id="more"></a>
+
+<h4 id="ribbon"><a href="#ribbon" class="headerlink" title="ribbon"></a>ribbon</h4><p>ribbon是一个负载均衡客户端，可以很好的控制htt和tcp的一些行为。</p>
+<p><a href="https://www.fangzhipeng.com/springcloud/2017/06/02/sc02-rest-ribbon.html" target="_blank" rel="noopener">示例</a></p>
+<h4 id="feign"><a href="#feign" class="headerlink" title="feign"></a>feign</h4><p>Feign是一个声明式的伪Http客户端，它使得写Http客户端变得更简单。使用Feign，只需要创建一个接口并注解。它具有可插拔的注解特性，可使用Feign 注解和JAX-RS注解。Feign支持可插拔的编码器和解码器。Feign默认集成了Ribbon，并和Eureka结合，默认实现了负载均衡的效果。</p>
+<p><a href="https://www.fangzhipeng.com/springcloud/2017/06/03/sc03-feign.html" target="_blank" rel="noopener">示例</a></p>
+<h4 id="Hystrix"><a href="#Hystrix" class="headerlink" title="Hystrix"></a>Hystrix</h4><p>在微服务架构中，根据业务来拆分成一个个的服务，服务与服务之间可以相互调用（RPC），在Spring Cloud可以用RestTemplate+Ribbon和Feign来调用。为了保证其高可用，单个服务通常会集群部署。由于网络原因或者自身的原因，服务并不能保证100%可用，如果单个服务出现问题，调用这个服务就会出现线程阻塞，此时若有大量的请求涌入，Servlet容器的线程资源会被消耗完毕，导致服务瘫痪。服务与服务之间的依赖性，故障会传播，会对整个微服务系统造成灾难性的严重后果，这就是服务故障的“雪崩”效应。</p>
+<p>为了解决这个问题，业界提出了断路器模型。</p>
+<p><a href="https://www.fangzhipeng.com/springcloud/2017/06/04/sc04-hystrix.html" target="_blank" rel="noopener">示例</a></p>
+<h4 id="Zuul"><a href="#Zuul" class="headerlink" title="Zuul"></a>Zuul</h4><p>Zuul的主要功能是路由转发和过滤器。路由功能是微服务的一部分，比如／api/user转发到到user服务，/api/shop转发到到shop服务。zuul默认和Ribbon结合实现了负载均衡的功能。</p>
+<p><a href="https://www.fangzhipeng.com/springcloud/2017/06/05/sc05-zuul.html" target="_blank" rel="noopener">示例</a></p>
+<h4 id="config"><a href="#config" class="headerlink" title="config"></a>config</h4><p>在分布式系统中，由于服务数量巨多，为了方便服务配置文件统一管理，实时更新，所以需要分布式配置中心组件。在Spring Cloud中，有分布式配置中心组件spring cloud config ，它支持配置服务放在配置服务的内存中（即本地），也支持放在远程Git仓库中。在spring cloud config 组件中，分两个角色，一是config server，二是config client。</p>
+<p><a href="https://www.fangzhipeng.com/springcloud/2017/06/06/sc06-config.html" target="_blank" rel="noopener">示例</a></p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -187,16 +221,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/16/SpringCloud学习-一/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://cheershi.github.io/2019/10/16/SpringCloud学习-一/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2019/10/16/20191016/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">工作总结(一)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -216,626 +309,14 @@
 
 
 
-
-  
-    <article id="post-20191016" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/16/20191016/">工作总结(一)</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/16/20191016/" class="archive-article-date">
-  	<time datetime="2019-10-16T02:01:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="深圳水文"><a href="#深圳水文" class="headerlink" title="深圳水文"></a>深圳水文</h3><h4 id="项目描述"><a href="#项目描述" class="headerlink" title="项目描述"></a>项目描述</h4><p>本项目主要是对深圳地区安装了fep的地区的水位、雨量、电导率、位移、流速、流量等精选监控出来，可以得到相关的实时以及历史记录，其中还包括导入、导出、图片、报警、显示等功能，以及对数据进行相关统计</p>
-<h4 id="完成模块"><a href="#完成模块" class="headerlink" title="完成模块"></a>完成模块</h4><p>闸站水位、工况信息、卫星到报状态、倾斜角度模块的综合监视以及历史数据上传数据的处理</p>
-<h4 id="设计技术"><a href="#设计技术" class="headerlink" title="设计技术"></a>设计技术</h4><p>SSM+idea</p>
-<h4 id="时长"><a href="#时长" class="headerlink" title="时长"></a>时长</h4><p>2019.7-至今</p>
-        
-          <a class="article-more-a" href="/2019/10/16/20191016/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/16/20191016/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20191015" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/15/20191015/">hexo创建博客</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/15/20191015/" class="archive-article-date">
-  	<time datetime="2019-10-15T08:28:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a><strong>安装hexo</strong></h4><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">cnpm</span> i -g hexo</span><br></pre></td></tr></table></figure>
-
-<h4 id="初始化命令"><a href="#初始化命令" class="headerlink" title="初始化命令"></a>初始化命令</h4><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo</span> init</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2019/10/15/20191015/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/15/20191015/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-数据到报率" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/14/数据到报率/">数据到报率</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/14/数据到报率/" class="archive-article-date">
-  	<time datetime="2019-10-14T09:55:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="涉及表"><a href="#涉及表" class="headerlink" title="涉及表"></a>涉及表</h2><p>标准水位表</p>
-<p>biz_water_st_r</p>
-<p>标准雨量表</p>
-<p>biz_rain_pptn_r</p>
-<p>测站信息表</p>
-<p>biz_station_info</p>
-        
-          <a class="article-more-a" href="/2019/10/14/数据到报率/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/14/数据到报率/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/11/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/11/hello-world/" class="archive-article-date">
-  	<time datetime="2019-10-11T06:14:44.225Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/11/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-短信发送" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/01/短信发送/">短信发送</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/01/短信发送/" class="archive-article-date">
-  	<time datetime="2019-10-01T09:55:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-通过配置文件来开启线程池"><a href="#1-通过配置文件来开启线程池" class="headerlink" title="1.通过配置文件来开启线程池"></a>1.通过配置文件来开启线程池</h2><h2 id="2-线程中-获取输出-处理数据"><a href="#2-线程中-获取输出-处理数据" class="headerlink" title="2.线程中 获取输出  处理数据"></a>2.线程中 获取输出  处理数据</h2><h2 id="3-处理数据中-判断是否超过阈值-没超过则删除预警记录中的数据（可优化-判断是否有记录）超过-判断预警表中有记录-没有则发送短信-判断短信状态-如果是失败-册-重发（配置重发时长）-更新记录"><a href="#3-处理数据中-判断是否超过阈值-没超过则删除预警记录中的数据（可优化-判断是否有记录）超过-判断预警表中有记录-没有则发送短信-判断短信状态-如果是失败-册-重发（配置重发时长）-更新记录" class="headerlink" title="3.处理数据中 判断是否超过阈值 没超过则删除预警记录中的数据（可优化 判断是否有记录）超过 判断预警表中有记录  没有则发送短信  判断短信状态 如果是失败  册 重发（配置重发时长） 更新记录"></a>3.处理数据中 判断是否超过阈值 没超过则删除预警记录中的数据（可优化 判断是否有记录）超过 判断预警表中有记录  没有则发送短信  判断短信状态 如果是失败  册 重发（配置重发时长） 更新记录</h2><h2 id="4-写代码-可以先完成固定部分（发送短信-查询短信记录-crud）-再根据业务来实现相关功能"><a href="#4-写代码-可以先完成固定部分（发送短信-查询短信记录-crud）-再根据业务来实现相关功能" class="headerlink" title="4.写代码 可以先完成固定部分（发送短信 查询短信记录 crud） 再根据业务来实现相关功能"></a>4.写代码 可以先完成固定部分（发送短信 查询短信记录 crud） 再根据业务来实现相关功能</h2>
-        
-          <a class="article-more-a" href="/2019/10/01/短信发送/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/01/短信发送/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20190918" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/18/20190918/">泥浆监测</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/18/20190918/" class="archive-article-date">
-  	<time datetime="2019-09-18T09:55:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="//cheershi.github.io/2019/09/18/20190918/201909181139.PNG" alt></p>
-        
-          <a class="article-more-a" href="/2019/09/18/20190918/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/18/20190918/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20190910" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/10/20190910/">数据报文</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/10/20190910/" class="archive-article-date">
-  	<time datetime="2019-09-10T09:55:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="报文接收状态"><a href="#报文接收状态" class="headerlink" title="报文接收状态"></a>报文接收状态</h3><p><img src="//cheershi.github.io/2019/09/10/20190910/201909101112.jpg" alt></p>
-        
-          <a class="article-more-a" href="/2019/09/10/20190910/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/10/20190910/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2019.9.3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/03/2019.9.3/">20190903</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/03/2019.9.3/" class="archive-article-date">
-  	<time datetime="2019-09-03T09:55:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><p>实时数据以及历史数据</p>
-<p>水位以及雨量的展示</p>
-<h2 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h2><p>jeecg-boot</p>
-<p>vue及其插件 vuex，vue-router，ant design vue</p>
-<h2 id="所得"><a href="#所得" class="headerlink" title="所得"></a>所得</h2><p>vue代码的基本阅读能力已经达成</p>
-<p>ant design api的使用</p>
-<p>vuex 的使用</p>
-<p>vue-router的使用</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/03/2019.9.3/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20190812" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/12/20190812/">小程序学习笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/12/20190812/" class="archive-article-date">
-  	<time datetime="2019-08-12T09:55:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><h3 id="视图容器"><a href="#视图容器" class="headerlink" title="视图容器"></a>视图容器</h3><h4 id="view"><a href="#view" class="headerlink" title="view"></a>view</h4><p>横向布局</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flex-direction: row</span><br></pre></td></tr></table></figure>
-
-<p>纵向布局</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flex-direction: column</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2019/08/12/20190812/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/12/20190812/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -858,8 +339,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
