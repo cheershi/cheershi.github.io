@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://cheershi.github.io">
-  <title>Archives: 2019 | 陈丰的个人博客</title>
+  <title>20191103 | 陈丰的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="陈丰的个人博客">
-<meta property="og:url" content="http://cheershi.github.io/archives/2019/page/2/index.html">
+  <meta name="description" content="vue 中地图的应用 1.引入 vue.config.js 123456configureWebpack: &amp;#123;  externals: &amp;#123;    &quot;BMap&quot;: &quot;BMap&quot;  &amp;#125;,&amp;#125;,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="20191103">
+<meta property="og:url" content="http://cheershi.github.io/2019/11/04/20191103/index.html">
 <meta property="og:site_name" content="陈丰的个人博客">
+<meta property="og:description" content="vue 中地图的应用 1.引入 vue.config.js 123456configureWebpack: &amp;#123;  externals: &amp;#123;    &quot;BMap&quot;: &quot;BMap&quot;  &amp;#125;,&amp;#125;,">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-04T07:57:34.075Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="陈丰的个人博客">
+<meta name="twitter:title" content="20191103">
+<meta name="twitter:description" content="vue 中地图的应用 1.引入 vue.config.js 123456configureWebpack: &amp;#123;  externals: &amp;#123;    &quot;BMap&quot;: &quot;BMap&quot;  &amp;#125;,&amp;#125;,">
   
     <link rel="alternative" href="/atom.xml" title="陈丰的个人博客" type="application/atom+xml">
   
@@ -150,241 +154,175 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-20191103" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      20191103
+    </h1>
+  
+
+        
+        <a href="/2019/11/04/20191103/" class="archive-article-date">
+  	<time datetime="2019-11-04T07:09:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-04</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>vue 中地图的应用</p>
+<p>1.引入</p>
+<p>vue.config.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">configureWebpack: &#123;</span><br><span class="line">  externals: &#123;</span><br><span class="line">    <span class="string">"BMap"</span>: <span class="string">"BMap"</span></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+<p>index.html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">src</span>=<span class="string">"http://api.map.baidu.com/api?v=3.0&amp;ak=oAUQSv1SFKSM0bR4NNYTbauTZE3PRvnF"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2.初始化</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">initMap() &#123;</span><br><span class="line">        <span class="keyword">let</span> map = <span class="keyword">new</span> BMap.Map(<span class="string">'map'</span>) <span class="comment">// 创建地图实例</span></span><br><span class="line">        <span class="keyword">this</span>.map = map</span><br><span class="line">        <span class="keyword">let</span> point = <span class="keyword">new</span> BMap.Point(<span class="number">114.064552</span>, <span class="number">22.54405</span>) <span class="comment">// 创建点坐标 河南农业大学</span></span><br><span class="line">        map.setMapStyle(&#123; <span class="attr">style</span>: <span class="string">'normal'</span> &#125;)</span><br><span class="line">        map.centerAndZoom(point, <span class="number">12</span>) <span class="comment">// 初始化地图，设置中心点坐标和地图级别</span></span><br><span class="line">        map.enableScrollWheelZoom(<span class="literal">true</span>) <span class="comment">//开启鼠标滚轮缩放</span></span><br><span class="line">        <span class="comment">// map.addControl(new BMap.NavigationControl());</span></span><br><span class="line">        map.addControl(<span class="keyword">new</span> BMap.ScaleControl())</span><br><span class="line">        map.addControl(<span class="keyword">new</span> BMap.OverviewMapControl())</span><br><span class="line">        <span class="comment">//  map.addControl(new BMap.MapTypeControl());</span></span><br><span class="line"></span><br><span class="line">        findWaterRainList(&#123;&#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">if</span> (res.success) &#123;</span><br><span class="line">            <span class="keyword">let</span> result = res.result</span><br><span class="line">            result.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">              <span class="keyword">let</span> loc = wgs84tobd09(item.waterCur.longitude, item.waterCur.latitude)</span><br><span class="line">              <span class="keyword">let</span> point = <span class="keyword">new</span> BMap.Point(loc[<span class="number">0</span>], loc[<span class="number">1</span>])</span><br><span class="line">              <span class="keyword">let</span> myIcon = <span class="keyword">new</span> BMap.Icon(<span class="string">'/gis/normal.gif'</span>, <span class="keyword">new</span> BMap.Size(<span class="number">50</span>, <span class="number">50</span>))</span><br><span class="line">              <span class="keyword">if</span> (item.waterCur.stTypeId == <span class="string">'PP'</span>) &#123;</span><br><span class="line">                myIcon = <span class="keyword">new</span> BMap.Icon(<span class="string">'/gis/rain.png'</span>, <span class="keyword">new</span> BMap.Size(<span class="number">50</span>, <span class="number">50</span>))</span><br><span class="line">              &#125;</span><br><span class="line">              <span class="keyword">if</span> (index == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">this</span>.map.centerAndZoom(point, <span class="number">12</span>) <span class="comment">// 初始化地图，设置中心点坐标和地图级别</span></span><br><span class="line">              &#125;</span><br><span class="line">              <span class="keyword">let</span> marker = <span class="keyword">new</span> BMap.Marker(point, &#123; <span class="attr">icon</span>: myIcon &#125;)  <span class="comment">// 创建标注</span></span><br><span class="line">              <span class="keyword">this</span>.addMarkerToMap(marker, item)</span><br><span class="line">              <span class="keyword">this</span>.addMapEventHandler(point, marker, item) <span class="comment">//添加事件</span></span><br><span class="line">            &#125;)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;).catch(<span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="built_in">console</span>.error(e)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>3.创建标注</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">addMarkerToMap(marker, data) &#123;</span><br><span class="line">        <span class="keyword">let</span> label = <span class="keyword">new</span> BMap.Label(<span class="string">`&lt;span style="padding:0 8px;min-width:40px;"&gt;<span class="subst">$&#123;data.waterCur.stName&#125;</span>&lt;/span&gt;`</span>, &#123; <span class="attr">offset</span>: <span class="keyword">new</span> BMap.Size(<span class="number">26</span>, <span class="number">-20</span>) &#125;)</span><br><span class="line">        label.setStyle(&#123;</span><br><span class="line">          border: <span class="string">'none'</span>,</span><br><span class="line">          color: <span class="string">'white'</span>,</span><br><span class="line">          fontWeight: <span class="string">'bold'</span>,</span><br><span class="line">          letterSpacing: <span class="string">'1px'</span>,</span><br><span class="line">          fontSize: <span class="string">'0.8em'</span>,</span><br><span class="line">          borderRadius: <span class="string">'10%'</span>,</span><br><span class="line">          backgroundColor: <span class="string">'#0E76E2'</span>,</span><br><span class="line">          transform: <span class="string">'translate(-50%,0)'</span>,</span><br><span class="line">          padding: <span class="string">'3px'</span></span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">if</span>(data.online==<span class="number">0</span>)&#123;</span><br><span class="line">          label.setStyle(&#123;</span><br><span class="line">            backgroundColor: <span class="string">'red'</span>,   <span class="comment">//离线</span></span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(data.online ==<span class="number">1</span>)&#123;</span><br><span class="line">          label.setStyle(&#123;</span><br><span class="line">            backgroundColor: <span class="string">'green'</span>,   <span class="comment">//在线</span></span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        marker.setLabel(label)</span><br><span class="line">        <span class="keyword">this</span>.map.addOverlay(marker)              <span class="comment">// 将标注添加到地图中</span></span><br><span class="line">      &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>4.为标注创建事件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">addMapEventHandler(point, marker, item) &#123;</span><br><span class="line">        <span class="keyword">let</span> that = <span class="keyword">this</span></span><br><span class="line">        marker.addEventListener(<span class="string">'mouseover'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">          <span class="comment">//that.dialogVisible = true;</span></span><br><span class="line">        &#125;)</span><br><span class="line">        marker.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">          that.WaterchartQueryParams.stcd =item.waterCur.termSn</span><br><span class="line">          that.RainchartQueryParams.stcd =item.waterCur.termSn</span><br><span class="line">          that.initRainChartTm()</span><br><span class="line">          that.initWaterChartTm()</span><br><span class="line">          that.initWaterChartData()</span><br><span class="line">          that.initRainChartData()</span><br><span class="line">          that.stcd = item.termSn</span><br><span class="line">          that.modalTitle = item.waterCur.stName</span><br><span class="line">          that.dialogVisible = <span class="literal">true</span></span><br><span class="line">          <span class="comment">//that.initPic(item.termSn)</span></span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>5.坐标转换</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> coordtransform <span class="keyword">from</span> <span class="string">'coordtransform'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> wgs84tobd09 = <span class="function">(<span class="params">lgtd, lttd</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// wgs84转国测局坐标</span></span><br><span class="line">  <span class="keyword">const</span> wgs84togcj02 = coordtransform.wgs84togcj02(lgtd, lttd)</span><br><span class="line">  <span class="comment">// 国测局坐标转百度经纬度坐标</span></span><br><span class="line">  <span class="keyword">const</span> gcj02tobd09 = coordtransform.gcj02tobd09(wgs84togcj02[<span class="number">0</span>], wgs84togcj02[<span class="number">1</span>])</span><br><span class="line">  <span class="keyword">return</span> gcj02tobd09</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> bd09towgs84 = <span class="function">(<span class="params">lgtd, lttd</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// wgs84转国测局坐标</span></span><br><span class="line">  <span class="keyword">const</span> bd09togcj02 = coordtransform.bd09togcj02(lgtd, lttd)</span><br><span class="line">  <span class="comment">// 国测局坐标转百度经纬度坐标</span></span><br><span class="line">  <span class="keyword">const</span> gcj02towgs84 = coordtransform.gcj02towgs84(bd09togcj02[<span class="number">0</span>], bd09togcj02[<span class="number">1</span>])</span><br><span class="line">  <span class="keyword">return</span> gcj02towgs84</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/01/短信发送/" class="archive-article-date">
-  	<time datetime="2019-10-01T09:55:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/01/短信发送/">短信发送</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://cheershi.github.io/2019/11/04/20191103/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/18/20190918/" class="archive-article-date">
-  	<time datetime="2019-09-18T09:55:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-18</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/11/04/20191104/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">20191104</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/18/20190918/">泥浆监测</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/10/20190910/" class="archive-article-date">
-  	<time datetime="2019-09-10T09:55:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/10/20190910/">数据报文</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/03/2019.9.3/" class="archive-article-date">
-  	<time datetime="2019-09-03T09:55:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/03/2019.9.3/">20190903</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/12/20190812/" class="archive-article-date">
-  	<time datetime="2019-08-12T09:55:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/12/20190812/">小程序学习笔记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/05/20190805/" class="archive-article-date">
-  	<time datetime="2019-08-05T09:55:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/05/20190805/">深圳水文前置</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/01/20190801/" class="archive-article-date">
-  	<time datetime="2019-08-01T09:55:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/01/20190801/">线程</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/31/20190731/" class="archive-article-date">
-  	<time datetime="2019-07-31T09:55:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/31/20190731/">闭包</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2019/">&laquo; Prev</a><a class="page-number" href="/archives/2019/">1</a><span class="page-number current">2</span>
-    </nav>
   
 
 
@@ -408,8 +346,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

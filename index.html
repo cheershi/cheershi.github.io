@@ -152,6 +152,360 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-20191103" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/04/20191103/">20191103</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/04/20191103/" class="archive-article-date">
+  	<time datetime="2019-11-04T07:09:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>vue 中地图的应用</p>
+<p>1.引入</p>
+<p>vue.config.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">configureWebpack: &#123;</span><br><span class="line">  externals: &#123;</span><br><span class="line">    <span class="string">"BMap"</span>: <span class="string">"BMap"</span></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2019/11/04/20191103/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/04/20191103/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20191104" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/04/20191104/">20191104</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/04/20191104/" class="archive-article-date">
+  	<time datetime="2019-11-04T06:55:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>jeecg首页修改</p>
+<p>util.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 生成首页路由</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">generateIndexRouter</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line"><span class="keyword">let</span> indexRouter = [&#123;</span><br><span class="line">          path: <span class="string">'/'</span>,</span><br><span class="line">          name: <span class="string">'dashboard'</span>,</span><br><span class="line">          <span class="comment">//component: () =&gt; import('@/components/layouts/BasicLayout'),</span></span><br><span class="line">          component: <span class="function"><span class="params">resolve</span> =&gt;</span> <span class="built_in">require</span>([<span class="string">'@/components/layouts/TabLayout'</span>], resolve),</span><br><span class="line">          meta: &#123; <span class="attr">title</span>: <span class="string">'首页'</span> &#125;,</span><br><span class="line">          redirect: <span class="string">'/gis/homePage'</span>,   <span class="comment">//gis/homePage   dataPacket/AcceptStatus</span></span><br><span class="line">          children: [</span><br><span class="line">            ...generateChildRouters(data)</span><br><span class="line">          ]</span><br><span class="line">        &#125;,&#123;</span><br><span class="line">          <span class="string">"path"</span>: <span class="string">"*"</span>, <span class="string">"redirect"</span>: <span class="string">"/404"</span>, <span class="string">"hidden"</span>: <span class="literal">true</span></span><br><span class="line">        &#125;]</span><br><span class="line">  <span class="keyword">return</span> indexRouter;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2019/11/04/20191104/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/04/20191104/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20191024" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/24/20191024/">20191024</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/24/20191024/" class="archive-article-date">
+  	<time datetime="2019-10-24T02:01:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>POI 导出excel</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//单表导出</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">exportSingle</span><span class="params">(HttpServletRequest request, HttpServletResponse resp)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">       resp.setHeader(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"*"</span>);</span><br><span class="line">       request.setCharacterEncoding(SystemConstants.CHAR_ENCODING);</span><br><span class="line"></span><br><span class="line">       <span class="comment">//得到list</span></span><br><span class="line">       <span class="comment">//拆分 stcd</span></span><br><span class="line">       List&lt;UnwaterHistory&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">       <span class="comment">//选择的才输出</span></span><br><span class="line">       <span class="comment">//得到Workbook</span></span><br><span class="line">       Workbook wb = getSingleHSSFWorkbook(request, list);</span><br><span class="line">       <span class="comment">// 生成导出文件</span></span><br><span class="line">       String time = CommUtils.convertDateToString(<span class="keyword">new</span> Date(), <span class="string">"yyyy_MM_dd_HH_mm_ss"</span>);</span><br><span class="line">       File underwaterExeclFile = <span class="keyword">new</span> File(<span class="string">"underWater_"</span> + time + <span class="string">".xls"</span>);</span><br><span class="line">       FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(underwaterExeclFile);</span><br><span class="line">       wb.write(fos);</span><br><span class="line">       <span class="keyword">if</span> (!CommUtils.isNull(fos)) &#123;</span><br><span class="line">           fos.close();</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">// 读到流中</span></span><br><span class="line">       InputStream inStream = <span class="keyword">new</span> FileInputStream(underwaterExeclFile);</span><br><span class="line">       <span class="comment">// 设置输出的格式</span></span><br><span class="line">       resp.reset();</span><br><span class="line">       resp.setContentType(<span class="string">"application/x-download; charset=UTF-8"</span>);</span><br><span class="line">       resp.addHeader(<span class="string">"Content-Disposition"</span>, <span class="string">"attachment; filename=\""</span> + underwaterExeclFile + <span class="string">"\""</span>);</span><br><span class="line">       <span class="comment">// 循环取出流中的数据</span></span><br><span class="line">       <span class="keyword">byte</span>[] b = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">           OutputStream out = resp.getOutputStream();</span><br><span class="line">           <span class="keyword">while</span> (inStream.read(b) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">               out.write(b);</span><br><span class="line">           &#125;</span><br><span class="line">           inStream.close();</span><br><span class="line">           out.close();</span><br><span class="line">           underwaterExeclFile.delete();</span><br><span class="line">       &#125; <span class="keyword">catch</span> (IOException ex) &#123;</span><br><span class="line">           <span class="keyword">throw</span> ex;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2019/10/24/20191024/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/24/20191024/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20191021" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/21/20191021/">20191021</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/21/20191021/" class="archive-article-date">
+  	<time datetime="2019-10-21T01:19:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>SpringMVC 核心： 通过hashmap 中 key为url ,value为method, 然后在通过method.invoke来执行方法</strong></p>
+<p><strong>Spring核心 ： 通过反射来创建对象</strong></p>
+<p><strong>分布式与集群的核心区别：集群 同一个业务部署到 不同服务器上 分布式 不同业务部署到不同服务器上或者同一业务分为多个子业务部署到不同服务器上</strong></p>
+        
+          <a class="article-more-a" href="/2019/10/21/20191021/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/21/20191021/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-jvm" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/16/jvm/">jvm(一)</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/16/jvm/" class="archive-article-date">
+  	<time datetime="2019-10-16T11:10:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>类加载器</p>
+<p>1.启动类加载器</p>
+<p>2.拓展类加载器</p>
+<p>3.应用类加载器</p>
+<p>4.可以直接继承ClassLoader 自己实现类加载器</p>
+<p>重点：双亲委派（从启动-&gt;扩展-》应用） 保证永远都是加载的用一个Object</p>
+<p>沙箱安全机制</p>
+<p>native</p>
+<p>本地方法（线程的 start 掉的本地 start0） 本质是调用的c、c++的函数</p>
+<p>重点：只有声明，没有实现</p>
+<p>本地方法栈</p>
+<p>为本地方法运行开辟的空间</p>
+<p>PC寄存器</p>
+<p>记录了方法之间的调用和执行情况（类似排班值日表）</p>
+<p>重点：记录了下一步字节码的内存地址</p>
+<p>方法区：</p>
+<p>记录类的信息 模板对象的类型数据</p>
+<p>栈</p>
+<p>栈管类型 堆管存储</p>
+<p>栈中保存 8种基本类型 +  对象的引用变量+实例方法</p>
+<p>存储</p>
+<p>输入参数 输出参数以及方法内的变量</p>
+<p>记录出栈、入栈的操作</p>
+<p>包含类文件、方法</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/16/jvm/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-SpringCloud学习-一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -469,340 +823,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/10/11/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-短信发送" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/01/短信发送/">短信发送</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/01/短信发送/" class="archive-article-date">
-  	<time datetime="2019-10-01T09:55:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-通过配置文件来开启线程池"><a href="#1-通过配置文件来开启线程池" class="headerlink" title="1.通过配置文件来开启线程池"></a>1.通过配置文件来开启线程池</h2><h2 id="2-线程中-获取输出-处理数据"><a href="#2-线程中-获取输出-处理数据" class="headerlink" title="2.线程中 获取输出  处理数据"></a>2.线程中 获取输出  处理数据</h2><h2 id="3-处理数据中-判断是否超过阈值-没超过则删除预警记录中的数据（可优化-判断是否有记录）超过-判断预警表中有记录-没有则发送短信-判断短信状态-如果是失败-册-重发（配置重发时长）-更新记录"><a href="#3-处理数据中-判断是否超过阈值-没超过则删除预警记录中的数据（可优化-判断是否有记录）超过-判断预警表中有记录-没有则发送短信-判断短信状态-如果是失败-册-重发（配置重发时长）-更新记录" class="headerlink" title="3.处理数据中 判断是否超过阈值 没超过则删除预警记录中的数据（可优化 判断是否有记录）超过 判断预警表中有记录  没有则发送短信  判断短信状态 如果是失败  册 重发（配置重发时长） 更新记录"></a>3.处理数据中 判断是否超过阈值 没超过则删除预警记录中的数据（可优化 判断是否有记录）超过 判断预警表中有记录  没有则发送短信  判断短信状态 如果是失败  册 重发（配置重发时长） 更新记录</h2><h2 id="4-写代码-可以先完成固定部分（发送短信-查询短信记录-crud）-再根据业务来实现相关功能"><a href="#4-写代码-可以先完成固定部分（发送短信-查询短信记录-crud）-再根据业务来实现相关功能" class="headerlink" title="4.写代码 可以先完成固定部分（发送短信 查询短信记录 crud） 再根据业务来实现相关功能"></a>4.写代码 可以先完成固定部分（发送短信 查询短信记录 crud） 再根据业务来实现相关功能</h2>
-        
-          <a class="article-more-a" href="/2019/10/01/短信发送/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/01/短信发送/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20190918" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/18/20190918/">泥浆监测</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/18/20190918/" class="archive-article-date">
-  	<time datetime="2019-09-18T09:55:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="//cheershi.github.io/2019/09/18/20190918/201909181139.PNG" alt></p>
-        
-          <a class="article-more-a" href="/2019/09/18/20190918/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/18/20190918/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20190910" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/10/20190910/">数据报文</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/10/20190910/" class="archive-article-date">
-  	<time datetime="2019-09-10T09:55:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="报文接收状态"><a href="#报文接收状态" class="headerlink" title="报文接收状态"></a>报文接收状态</h3><p><img src="//cheershi.github.io/2019/09/10/20190910/201909101112.jpg" alt></p>
-        
-          <a class="article-more-a" href="/2019/09/10/20190910/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/10/20190910/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2019.9.3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/03/2019.9.3/">20190903</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/03/2019.9.3/" class="archive-article-date">
-  	<time datetime="2019-09-03T09:55:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><p>实时数据以及历史数据</p>
-<p>水位以及雨量的展示</p>
-<h2 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h2><p>jeecg-boot</p>
-<p>vue及其插件 vuex，vue-router，ant design vue</p>
-<h2 id="所得"><a href="#所得" class="headerlink" title="所得"></a>所得</h2><p>vue代码的基本阅读能力已经达成</p>
-<p>ant design api的使用</p>
-<p>vuex 的使用</p>
-<p>vue-router的使用</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/03/2019.9.3/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20190812" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/12/20190812/">小程序学习笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/12/20190812/" class="archive-article-date">
-  	<time datetime="2019-08-12T09:55:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><h3 id="视图容器"><a href="#视图容器" class="headerlink" title="视图容器"></a>视图容器</h3><h4 id="view"><a href="#view" class="headerlink" title="view"></a>view</h4><p>横向布局</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flex-direction: row</span><br></pre></td></tr></table></figure>
-
-<p>纵向布局</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flex-direction: column</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2019/08/12/20190812/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/12/20190812/">展开全文 >></a>
         </p>
       
 
